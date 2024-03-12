@@ -1,6 +1,6 @@
 import 'package:catbreeds/config/routes/imports.dart';
 
-String get initRoute => AppRoutes.splash;
+String get initRoute => AppRoutes.home;
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   final args = settings.arguments;
@@ -21,6 +21,19 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         builder: ChangeNotifierProvider(
           create: (_) => HomeProvider(),
           child: const HomeScreen(),
+        ),
+      );
+
+    case AppRoutes.details:
+      final map = args as Map;
+
+      return _buildRoute(
+        settings: settings,
+        builder: ChangeNotifierProvider(
+          create: (_) => DetailsProvider(
+            breed: map['breed'] as Breed,
+          ),
+          child: const DetailsScreen(),
         ),
       );
 
