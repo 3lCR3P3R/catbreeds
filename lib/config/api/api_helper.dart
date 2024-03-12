@@ -53,4 +53,23 @@ class ApiHelper {
       return [];
     }
   }
+
+  Future<dynamic> getBreedsLimit({int page = 0, int limit = 5}) async {
+    try {
+      final response = await _get(
+          url: '${ApiConst.breedsPath}?limit=$limit&page=$page',
+          header: {
+            'x-api-key': Env.apiKey,
+          });
+
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      }
+
+      return [];
+    } catch (e) {
+      debugPrint('failed in getBreeds: $e');
+      return [];
+    }
+  }
 }

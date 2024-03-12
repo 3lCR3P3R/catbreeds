@@ -1,6 +1,6 @@
 import 'package:catbreeds/config/routes/imports.dart';
 
-String get initRoute => AppRoutes.home;
+String get initRoute => AppRoutes.splash;
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   final args = settings.arguments;

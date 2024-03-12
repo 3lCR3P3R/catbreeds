@@ -25,19 +25,22 @@ class HomeScreen extends StatelessWidget {
     _size ??= MediaQuery.of(context).size;
     _homeProvider ??= context.read<HomeProvider>();
 
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: const Column(
-            children: [
-              _Tittle(),
-              _Search(),
-              _LoadingState(),
-            ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          body: Container(
+            height: double.infinity,
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: const Column(
+              children: [
+                _Tittle(),
+                _Search(),
+                _LoadingState(),
+              ],
+            ),
           ),
         ),
       ),
@@ -51,7 +54,7 @@ class _Tittle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: _size!.height * 0.014362657092),
+      margin: EdgeInsets.only(top: _size!.height * 0.032188841202),
       child: AutoSizeText(
         AppStrings.homeTitle,
         style: AppTextStyles.header,
@@ -164,55 +167,69 @@ class _CatCard extends StatelessWidget {
       onTap: () => Navigator.pushNamed(context, AppRoutes.details, arguments: {
         'breed': breed,
       }),
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 15),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 12),
-                  child: Row(
-                    children: [
-                      Tooltip(
-                        message: "The cat's breed is ${breed.name}",
-                        child: AutoSizeText(breed.name),
-                      ),
-                      const Spacer(),
-                      const Tooltip(
-                        message: 'Tap for more information',
-                        child: AutoSizeText('More...'),
-                      ),
-                    ],
+      child: Tooltip(
+        message: 'Card of a(an) ${breed.name} cat',
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 15),
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    child: Row(
+                      children: [
+                        Tooltip(
+                          message: "The cat's breed is ${breed.name}",
+                          child: AutoSizeText(
+                            breed.name,
+                            style: AppTextStyles.subTitle,
+                          ),
+                        ),
+                        const Spacer(),
+                        Tooltip(
+                          message: AppStrings.tapMoreInfo,
+                          child: AutoSizeText(
+                            AppStrings.moreInfo,
+                            style: AppTextStyles.subTitle,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Tooltip(
-                  message: 'Image of a(n) ${breed.name} cat',
-                  child: ImageWithCache(
-                    imageUrl:
-                        'https://cdn2.thecatapi.com/images/${breed.referenceImageId}.jpg',
-                    needProgressIndicator: true,
+                  Tooltip(
+                    message: 'Image of a(an) ${breed.name} cat',
+                    child: ImageWithCache(
+                      imageUrl: breed.referenceImageId.getCatImage,
+                      needProgressIndicator: true,
+                    ),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 12),
-                  child: Row(
-                    children: [
-                      Tooltip(
-                        message: "Cat's country is ${breed.origin}",
-                        child: AutoSizeText('${breed.origin}'),
-                      ),
-                      const Spacer(),
-                      Tooltip(
-                        message: "Cat's intelligence is ${breed.intelligence}",
-                        child:
-                            AutoSizeText('Intelligence: ${breed.intelligence}'),
-                      ),
-                    ],
+                  Container(
+                    margin: const EdgeInsets.only(top: 12),
+                    child: Row(
+                      children: [
+                        Tooltip(
+                          message: "Cat's country is ${breed.origin}",
+                          child: AutoSizeText(
+                            '${breed.origin}',
+                            style: AppTextStyles.subTitle,
+                          ),
+                        ),
+                        const Spacer(),
+                        Tooltip(
+                          message:
+                              "Cat's intelligence is ${breed.intelligence}",
+                          child: AutoSizeText(
+                            'Intelligence: ${breed.intelligence}',
+                            style: AppTextStyles.subTitle,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

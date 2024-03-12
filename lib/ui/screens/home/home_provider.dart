@@ -21,7 +21,6 @@ class HomeProvider with ChangeNotifier {
 
   final int quantity = 5;
   int currentPage = 0;
-  int pages = 1;
 
   String? catSearched;
   Timer? searchOnStoppedTyping;
@@ -63,8 +62,6 @@ class HomeProvider with ChangeNotifier {
     }
 
     loadingState = LoadingState.found;
-
-    pages = (originalList.length / quantity).ceil();
     currentPage = 1;
 
     notifyListeners();
@@ -83,7 +80,7 @@ class HomeProvider with ChangeNotifier {
     currentPage += 1;
 
     if ((currentPage * quantity) > originalList.length) {
-      currentPage--;
+      currentPage -= 1;
     }
 
     notifyListeners();

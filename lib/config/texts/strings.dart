@@ -7,4 +7,8 @@ class AppStrings {
 
   // Home
   static const homeTitle = 'Catbreeds';
+
+  // Home - Tooltip
+  static const moreInfo = 'More...';
+  static const tapMoreInfo = 'Tap for more information';
 }

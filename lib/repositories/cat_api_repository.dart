@@ -31,4 +31,18 @@ class CatApiRepository {
       return [];
     }
   }
+
+  Future<List<dynamic>> getBreedsLimit({int page = 0, int limit = 5}) async {
+    try {
+      final result = await ApiHelper().getBreedsLimit(page: page, limit: limit);
+
+      if (result.isEmpty) return [];
+
+      return result.map((e) => Breed.fromJson(e)).toList();
+    } catch (e) {
+      debugPrint('failed in getBreeds repository: $e');
+
+      return [];
+    }
+  }
 }

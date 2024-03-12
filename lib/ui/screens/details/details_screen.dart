@@ -26,7 +26,11 @@ class DetailsScreen extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: const Column(
-          children: [_Header(), _StaticImage(), _BreedInformation()],
+          children: [
+            _Header(),
+            _StaticImage(),
+            _BreedInformation(),
+          ],
         ),
       ),
     );
@@ -56,7 +60,6 @@ class _Header extends StatelessWidget {
           AutoSizeText(
             _detailsProvider!.breed.name,
             style: AppTextStyles.header,
-            // style: ,
           ),
         ],
       ),
@@ -70,6 +73,7 @@ class _StaticImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: _size!.height * 0.50,
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: ImageWithCache(
         imageUrl: _detailsProvider!.breed.referenceImageId.getCatImage,
@@ -85,8 +89,9 @@ class _BreedInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: SizedBox(
-        width: double.infinity,
+      child: Scrollbar(
+        /// TODO: we can remove it
+        thumbVisibility: true,
         child: ListView(
           children: _detailsProvider!.breed
               .toMap()
