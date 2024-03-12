@@ -1,11 +1,25 @@
 import 'dart:math';
-
+import 'package:catbreeds/config/routes/router_path.dart';
 import 'package:flutter/material.dart';
+
+import 'package:catbreeds/main.dart';
 
 class SplashProvider with ChangeNotifier {
   SplashProvider() {
-    _rndValue = _random.nextInt(_catImageIds.length);
+    _setRandomValue();
+    _goHome();
   }
+
+  void _setRandomValue() => _rndValue = _random.nextInt(_catImageIds.length);
+
+  void _goHome() => Future.delayed(
+        const Duration(milliseconds: 1500),
+        () => Navigator.pushNamedAndRemoveUntil(
+          navigatorKey.currentContext!,
+          AppRoutes.home,
+          (route) => false,
+        ),
+      );
 
   final Random _random = Random();
   int _rndValue = 0;
