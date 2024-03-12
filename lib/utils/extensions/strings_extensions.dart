@@ -8,4 +8,8 @@ extension NullableStringsExtension on String? {
 
     return true;
   }
+
+  String get getCatImage => 'https://cdn2.thecatapi.com/images/$this.jpg';
+
+  bool get validateUrl => this?.contains('http') ?? false;
 }

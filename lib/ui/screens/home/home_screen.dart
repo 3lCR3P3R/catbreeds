@@ -1,3 +1,4 @@
+import 'package:catbreeds/config/routes/router_path.dart';
 import 'package:catbreeds/ui/widgets/general/input_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -122,8 +123,11 @@ class _ListCatCardsFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      children:
-          _homeProvider!.breedList.map((e) => _CatCard(breed: e)).toList(),
+      children: _homeProvider!.breedList
+          .map((e) => _CatCard(
+                breed: e,
+              ))
+          .toList(),
     );
   }
 }
@@ -157,7 +161,9 @@ class _CatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => debugPrint('goToMoreDetails'),
+      onTap: () => Navigator.pushNamed(context, AppRoutes.details, arguments: {
+        'breed': breed,
+      }),
       child: Container(
         margin: const EdgeInsets.only(bottom: 15),
         child: Card(

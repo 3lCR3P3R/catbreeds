@@ -10,4 +10,13 @@ class AppTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.w800,
   );
+
+  static TextStyle subTitle = _baseFont.copyWith(
+    fontSize: 14,
+    fontWeight: FontWeight.w800,
+  );
+
+  static TextStyle normalText = _baseFont.copyWith(
+    fontSize: 14,
+  );
 }
