@@ -15,6 +15,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         ),
       );
 
+    case AppRoutes.home:
+      return _buildRoute(
+        settings: settings,
+        builder: ChangeNotifierProvider(
+          create: (_) => HomeProvider(),
+          child: const HomeScreen(),
+        ),
+      );
+
     default:
       return _errorRoute();
   }

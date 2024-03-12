@@ -1,3 +1,4 @@
+import 'package:catbreeds/config/env.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,14 +6,15 @@ import 'package:catbreeds/config/routes/router.dart' as router;
 import 'package:catbreeds/config/texts/strings.dart';
 import 'package:catbreeds/config/ui/themes.dart';
 
-void main() {
-  _initApp();
+void main() async {
+  await _initApp();
   runApp(const MyApp());
 }
 
-void _initApp() {
+Future<void> _initApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  await Env.init();
 }
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

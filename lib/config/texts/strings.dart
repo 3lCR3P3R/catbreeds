@@ -4,4 +4,7 @@ class AppStrings {
 
 // Splash
   static const splashTitle = 'Catbreeds';
+
+  // Home
+  static const homeTitle = 'Catbreeds';
 }
