@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:catbreeds/config/routes/router_path.dart';
+import 'package:catbreeds/utils/extensions/strings_extensions.dart';
 import 'package:flutter/material.dart';
 
 import 'package:catbreeds/main.dart';
@@ -33,7 +34,5 @@ class SplashProvider with ChangeNotifier {
     // 'O3btzLlsO', // dont 'work' because is png
   ];
 
-  String getImageByRandomId() {
-    return 'https://cdn2.thecatapi.com/images/${_catImageIds[_rndValue]}.jpg';
-  }
+  String getImageByRandomId() => _catImageIds[_rndValue].getCatImage;
 }
