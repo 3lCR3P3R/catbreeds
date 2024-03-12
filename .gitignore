@@ -20,6 +20,7 @@ migrate_working_dir/
 .project
 .settings/
 .vscode/
+!.vscode/settings.json
 
 # Flutter repo-specific
 /bin/cache/
@@ -116,3 +117,4 @@ coverage/
 .fvm/flutter_sdk
 !.fvm/fvm_config.json
 *.iml
+.env
